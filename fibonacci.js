@@ -1,33 +1,31 @@
-// with for loop
-function fibs(num) {
-    let fibArr = [];
+function fibbIterative(num) {
+    const arrFibb = [];
+    const arr = []
+    let firstNum = 0;
+    let secondNum = 0;
+    let total = 0;
 
-    for (let i = 0; i < num; i++) {
-        if (i < 2) {
-            fibArr.push(i);
+    for (let i = 0; i <= num ; i++) {
+        if (i === 0) {
+            arrFibb.push(0);
+            arr.push(0)
+        } else if (i === 1) {
+            arrFibb.push(1);
+            arr.push(1)
+
         } 
-        else {
-            fibArr[i] - 1 + fibArr[i] - 2;   
-        }
         
+        else {
+            firstNum = arr[i - 2];
+            secondNum = arr[i - 1];
+            console.log(firstNum, secondNum);
+            total = firstNum + secondNum;
+            arr.push(total)
+        }
     }
 
-    return fibArr;
+    arr.pop();
+    return arr;
 }
 
-console.log(fibs(3));
-
-// function fibsRec(count) {
-//     let fibArr = [];
-//     let num = count - 1;
-
-//     if (count === 0) {
-//         return [];
-//     }
-
-//     if (num < 2) {
-//         return num;
-//     } else {
-//         return fibsRec(num - 1) + fibsRec(num - 2);
-//     }
-// }
+console.log(fibbIterative(16));
