@@ -1,34 +1,65 @@
-/**
- * an input of: 
- * [3, 2, 1, 13, 8, 5, 0, 1] should return:
- * [0, 1, 1, 2, 3, 5, 8, 13],
- * 
- * and an input of:
- * [105, 79, 100, 110] should return: 
- * [79, 100, 105, 110].
- * 
- * pseudocode:
- * - sort the left half of the array
- * - sort the right half of the array
- * - merge the two halves together
- */
-
 function mergeSort(arr) {
-    if (arr.length === 0) {
+    let arrNew = [];
+
+    if (arr.length === 1) {
         return arr;
     } 
 
-    const arrLeft = arr.slice(0, 2);
-    const arrRight = arr.slice(2);
+    if (arr.length % 2 === 0) {
+        const mid = Math.floor(arr.length / 2);
+        const arrLeft = arr.slice(0, mid);
+        const arrRight = arr.slice(mid);
 
-    console.log(arrLeft);
-    console.log(arrRight);
+        const arrNewRight = mergeSort(arrRight);
+        const arrNewLeft = mergeSort(arrLeft);
+
+        let leftIndex = 0;
+        let rightIndex = 0;
+
+        while (rightIndex < arrNewRight.length && leftIndex < arrNewLeft.length) {            
+            if (arrNewLeft[leftIndex] > arrNewRight[rightIndex]) {
+                arrNew.push(arrNewRight[rightIndex]);
+                arrNewRight.splice(rightIndex,1);
+            } else if (arrNewLeft[leftIndex] < arrNewRight[rightIndex]) {
+                arrNew.push(arrNewLeft[leftIndex]);
+                arrNewLeft.splice(leftIndex,1);
+            } 
+        }
+
+        if (arrNewLeft.length >= 1) {
+            return arrNew.concat(arrNewLeft); 
+        } else if (arrNewRight.length >= 1) {
+            return arrNew.concat(arrNewRight); 
+        }
+
+    } else if (arr.length % 2 !== 0) {
+        const mid = Math.floor(arr.length / 2);
+        const arrLeft = arr.slice(0, mid + 1);
+        const arrRight = arr.slice(mid + 1);
+
+        const arrNewRight = mergeSort(arrRight);
+        const arrNewLeft = mergeSort(arrLeft);
+
+        let leftIndex = 0;
+        let rightIndex = 0;
+
+        while (rightIndex < arrNewRight.length && leftIndex < arrNewLeft.length) {
+            if (arrNewLeft[leftIndex] > arrNewRight[rightIndex]) {
+                arrNew.push(arrNewRight[rightIndex]);
+                arrNewRight.splice(rightIndex,1);
+            } else if (arrNewLeft[leftIndex] < arrNewRight[rightIndex]) {
+                arrNew.push(arrNewLeft[leftIndex]);
+                arrNewLeft.splice(leftIndex,1);
+            } 
+        }
+
+        if (arrNewLeft.length >= 1) {
+            return arrNew.concat(arrNewLeft); 
+        } else if (arrNewRight.length >= 1) {
+            return arrNew.concat(arrNewRight); 
+        }
+    }
+
 }
 
-console.log(mergeSort([4, 2, 6]));
-
-/**
- * []
- * [] []
- * [4] [2] [6]
- */
+console.log(mergeSort([869,856,593,888,487,897,845,97,0,111,999]));
