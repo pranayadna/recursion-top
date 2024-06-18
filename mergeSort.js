@@ -17,10 +17,10 @@ function mergeSort(arr) {
         let rightIndex = 0;
 
         while (rightIndex < arrNewRight.length && leftIndex < arrNewLeft.length) {            
-            if (arrNewLeft[leftIndex] > arrNewRight[rightIndex]) {
+            if (arrNewLeft[leftIndex] >= arrNewRight[rightIndex]) {
                 arrNew.push(arrNewRight[rightIndex]);
                 arrNewRight.splice(rightIndex,1);
-            } else if (arrNewLeft[leftIndex] < arrNewRight[rightIndex]) {
+            } else if (arrNewLeft[leftIndex] <= arrNewRight[rightIndex]) {
                 arrNew.push(arrNewLeft[leftIndex]);
                 arrNewLeft.splice(leftIndex,1);
             } 
@@ -44,10 +44,10 @@ function mergeSort(arr) {
         let rightIndex = 0;
 
         while (rightIndex < arrNewRight.length && leftIndex < arrNewLeft.length) {
-            if (arrNewLeft[leftIndex] > arrNewRight[rightIndex]) {
+            if (arrNewLeft[leftIndex] >= arrNewRight[rightIndex]) {
                 arrNew.push(arrNewRight[rightIndex]);
                 arrNewRight.splice(rightIndex,1);
-            } else if (arrNewLeft[leftIndex] < arrNewRight[rightIndex]) {
+            } else if (arrNewLeft[leftIndex] <= arrNewRight[rightIndex]) {
                 arrNew.push(arrNewLeft[leftIndex]);
                 arrNewLeft.splice(leftIndex,1);
             } 
@@ -62,4 +62,5 @@ function mergeSort(arr) {
 
 }
 
-console.log(mergeSort([869,856,593,888,487,897,845,97,0,111,999]));
+console.log(mergeSort([3, 2, 1, 13, 8, 5, 0, 1]));
+console.log(mergeSort([105, 79, 100, 110]));
